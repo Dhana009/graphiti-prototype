@@ -44,11 +44,13 @@ services:
       - SEMAPHORE_LIMIT=${SEMAPHORE_LIMIT:-10}
       - CONFIG_PATH=/app/mcp/config/config.yaml
       - PATH=/root/.local/bin:${PATH}
+      - PYTHONPATH=/app/graphiti_core:${PYTHONPATH}
     volumes:
       - ../config/config-docker-neo4j.yaml:/app/mcp/config/config.yaml:ro
+      - ../../graphiti_core:/app/graphiti_core:ro
     ports:
       - "8000:8000" # Expose the MCP server via HTTP transport
-    command: ["uv", "run", "main.py"]
+    command: ["/bin/bash", "-c", "export PYTHONPATH=/app/graphiti_core:$PYTHONPATH && cd /app/mcp && uv run main.py"]
 
 volumes:
   neo4j_data:

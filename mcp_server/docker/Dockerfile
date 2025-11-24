@@ -73,7 +73,7 @@ set -e
 
 # Start FalkorDB in background using the correct module path
 echo "Starting FalkorDB..."
-redis-server \
+/usr/local/bin/redis-server \
   --loadmodule /var/lib/falkordb/bin/falkordb.so \
   --protected-mode no \
   --bind 0.0.0.0 \
@@ -83,9 +83,9 @@ redis-server \
 
 # Wait for FalkorDB to be ready
 echo "Waiting for FalkorDB to be ready..."
-until redis-cli -h localhost -p 6379 ping > /dev/null 2>&1; do
+until /usr/local/bin/redis-cli -h localhost -p 6379 ping > /dev/null 2>&1; do
   echo "FalkorDB not ready yet, waiting..."
-  sleep 1
+  /bin/sleep 1 || sleep 1
 done
 echo "FalkorDB is ready!"
 
