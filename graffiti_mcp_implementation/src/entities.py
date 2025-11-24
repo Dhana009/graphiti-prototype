@@ -60,7 +60,7 @@ async def add_entity(
         name: Human-readable name for the entity (required)
         properties: Optional key-value properties (flat only)
         summary: Optional brief description
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Created entity data including entity_id, entity_type, name, etc.
@@ -218,7 +218,7 @@ async def get_entity_by_id(
     Args:
         connection: DatabaseConnection instance (must be connected)
         entity_id: Unique identifier for the entity (required)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
         include_deleted: If True, include soft-deleted entities (default: False)
 
     Returns:
@@ -322,7 +322,7 @@ async def get_entities_by_type(
     Args:
         connection: DatabaseConnection instance (must be connected)
         entity_type: Type of entities to retrieve (required)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
         limit: Optional maximum number of results to return (default: 50, max: 1000)
 
     Returns:
@@ -429,7 +429,7 @@ async def update_entity(
         name: Optional new name for the entity
         properties: Optional new properties (replaces all properties if provided)
         summary: Optional new summary (None to remove summary)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Updated entity data including entity_id, entity_type, name, etc.
@@ -657,7 +657,7 @@ async def delete_entity(
     Args:
         connection: DatabaseConnection instance (must be connected)
         entity_id: Unique identifier for the entity (required)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
         hard: If True, permanently delete entity (hard delete). If False, soft delete (default).
 
     Returns:
@@ -837,7 +837,7 @@ async def restore_entity(
     Args:
         connection: DatabaseConnection instance (must be connected)
         entity_id: Unique identifier for the entity (required)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Restoration result with status and entity_id

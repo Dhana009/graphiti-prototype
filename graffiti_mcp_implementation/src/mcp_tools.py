@@ -63,7 +63,7 @@ def _get_add_entity_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 },
                 "episode_uuid": {
                     "type": "string",
@@ -114,7 +114,7 @@ def _get_add_relationship_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 }
             },
             "required": ["source_entity_id", "target_entity_id", "relationship_type"]
@@ -136,7 +136,7 @@ def _get_get_entity_by_id_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 },
                 "include_deleted": {
                     "type": "boolean",
@@ -162,7 +162,7 @@ def _get_get_entities_by_type_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 },
                 "limit": {
                     "type": "integer",
@@ -206,7 +206,7 @@ def _get_get_entity_relationships_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 },
                 "include_deleted": {
                     "type": "boolean",
@@ -241,7 +241,7 @@ def _get_search_nodes_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 }
             },
             "required": ["query"]
@@ -276,7 +276,7 @@ def _get_add_memory_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 },
                 "uuid": {
                     "type": "string",
@@ -306,7 +306,7 @@ def _get_update_memory_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 },
                 "update_strategy": {
                     "type": "string",
@@ -336,7 +336,7 @@ def _get_soft_delete_entity_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 }
             },
             "required": ["entity_id"]
@@ -366,7 +366,7 @@ def _get_soft_delete_relationship_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 }
             },
             "required": ["source_entity_id", "target_entity_id", "relationship_type"]
@@ -388,7 +388,7 @@ def _get_restore_entity_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 }
             },
             "required": ["entity_id"]
@@ -418,7 +418,7 @@ def _get_restore_relationship_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 }
             },
             "required": ["source_entity_id", "target_entity_id", "relationship_type"]
@@ -443,7 +443,7 @@ def _get_hard_delete_entity_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 }
             },
             "required": ["entity_id"]
@@ -473,7 +473,7 @@ def _get_hard_delete_relationship_schema() -> types.Tool:
                 },
                 "group_id": {
                     "type": "string",
-                    "description": "Optional group ID for multi-tenancy (defaults to 'default')"
+                    "description": "Optional group ID for multi-tenancy (defaults to 'main'). Reserved IDs: 'default', 'global', 'system', 'admin'"
                 }
             },
             "required": ["source_entity_id", "target_entity_id", "relationship_type"]

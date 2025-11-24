@@ -88,10 +88,11 @@ logging.basicConfig(
 
 # Configure specific loggers
 logging.getLogger('uvicorn').setLevel(logging.INFO)
-logging.getLogger('uvicorn.access').setLevel(logging.WARNING)  # Reduce access log noise
+logging.getLogger('uvicorn.access').setLevel(logging.INFO)  # Show HTTP requests
 logging.getLogger('mcp.server.streamable_http_manager').setLevel(
-    logging.WARNING
-)  # Reduce MCP noise
+    logging.INFO
+)  # Show MCP protocol messages
+logging.getLogger('mcp').setLevel(logging.INFO)  # Show MCP tool calls
 
 
 # Patch uvicorn's logging config to use our format
@@ -373,6 +374,7 @@ async def add_memory(
     try:
         # Use the provided group_id or fall back to the default from config
         effective_group_id = group_id or config.graphiti.group_id
+        logger.info(f'Tool called: add_memory(name="{name}", group_id="{effective_group_id}", source="{source}")')
 
         # Try to parse the source as an EpisodeType enum, with fallback to text
         episode_type = EpisodeType.text  # Default

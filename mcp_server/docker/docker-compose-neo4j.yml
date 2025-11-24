@@ -25,8 +25,8 @@ services:
     #   image: zepai/knowledge-graph-mcp:1.0.0-standalone
     # When building locally, the build section below will be used.
     build:
-      context: ..
-      dockerfile: docker/Dockerfile.standalone
+      context: ../..
+      dockerfile: mcp_server/docker/Dockerfile.standalone
     env_file:
       - path: ../.env
         required: false
@@ -47,10 +47,10 @@ services:
       - PYTHONPATH=/app/graphiti_core:${PYTHONPATH}
     volumes:
       - ../config/config-docker-neo4j.yaml:/app/mcp/config/config.yaml:ro
-      - ../../graphiti_core:/app/graphiti_core:ro
+      - ../../:/app/project:ro
     ports:
       - "8000:8000" # Expose the MCP server via HTTP transport
-    command: ["/bin/bash", "-c", "export PYTHONPATH=/app/graphiti_core:$PYTHONPATH && cd /app/mcp && uv run main.py"]
+    command: ["/bin/bash", "-c", "cd /app/project && uv pip install --python /app/mcp/.venv/bin/python -e '.[neo4j,falkordb]' 2>/dev/null || true && export PYTHONPATH=/app/project:$PYTHONPATH && cd /app/mcp && uv run main.py"]
 
 volumes:
   neo4j_data:

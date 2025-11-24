@@ -6,6 +6,7 @@ as MCP tools for AI assistants.
 
 import asyncio
 import logging
+import os
 import sys
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
@@ -116,6 +117,11 @@ async def handle_call_tool(name: str, arguments: Dict[str, Any]) -> list[types.T
     ctx = server.request_context
     connection: DatabaseConnection = ctx.lifespan_context["connection"]
     
+    # Log tool call with arguments (sanitize sensitive data)
+    import json
+    sanitized_args = {k: v for k, v in arguments.items() if 'password' not in k.lower() and 'key' not in k.lower()}
+    logger.info(f"Tool called: {name} with arguments: {json.dumps(sanitized_args, default=str)}")
+    
     try:
         # Route tool calls to appropriate handlers
         if name == "add_entity":
@@ -152,6 +158,9 @@ async def handle_call_tool(name: str, arguments: Dict[str, Any]) -> list[types.T
         # Convert result to JSON string for TextContent
         import json
         result_json = json.dumps(result, indent=2, default=str)
+        
+        # Log successful tool execution
+        logger.info(f"Tool {name} executed successfully")
         
         return [types.TextContent(type="text", text=result_json)]
         
@@ -386,9 +395,12 @@ async def run_server():
 
 def main():
     """Main entry point for the MCP server (for use as entry point script)."""
-    # Configure logging
+    # Configure logging - use DEBUG level if LOG_LEVEL env var is set to DEBUG
+    log_level = os.getenv('LOG_LEVEL', 'INFO').upper()
+    log_level = getattr(logging, log_level, logging.INFO)
+    
     logging.basicConfig(
-        level=logging.INFO,
+        level=log_level,
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         stream=sys.stderr,  # Log to stderr to avoid interfering with MCP stdio
     )

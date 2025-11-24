@@ -28,7 +28,7 @@ async def search_nodes(
         query: Natural language search query (required)
         max_nodes: Maximum number of results to return (default: 10, max: 100)
         entity_types: Optional list of entity types to filter by
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Search results containing:

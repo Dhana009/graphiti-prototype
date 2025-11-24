@@ -77,7 +77,7 @@ class Neo4jDriver(GraphDriver):
             if 'EquivalentSchemaRuleAlreadyExists' in error_str or 'Neo.ClientError.Schema.EquivalentSchemaRuleAlreadyExists' in error_str:
                 logger.info(f'Index already exists (equivalent), skipping: {cypher_query_}')
                 # Return an empty result to indicate success
-                return EagerResult(records=[], summary=None)
+                return EagerResult(records=[], keys=[], summary=None)
             logger.error(f'Error executing Neo4j query: {e}\n{cypher_query_}\n{params}')
             raise
 

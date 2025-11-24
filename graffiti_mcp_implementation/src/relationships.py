@@ -65,7 +65,7 @@ async def validate_entities_exist(
         await get_entity_by_id(connection, source_entity_id, group_id)
     except EntityNotFoundError:
         raise EntityNotFoundError(
-            f"Source entity with ID '{source_entity_id}' not found in group '{group_id or 'default'}'"
+            f"Source entity with ID '{source_entity_id}' not found in group '{group_id or 'main'}'"
         )
 
     # Check target entity
@@ -73,7 +73,7 @@ async def validate_entities_exist(
         await get_entity_by_id(connection, target_entity_id, group_id)
     except EntityNotFoundError:
         raise EntityNotFoundError(
-            f"Target entity with ID '{target_entity_id}' not found in group '{group_id or 'default'}'"
+            f"Target entity with ID '{target_entity_id}' not found in group '{group_id or 'main'}'"
         )
 
 
@@ -99,7 +99,7 @@ async def add_relationship(
         fact: Optional human-readable description of the relationship
         t_valid: Optional datetime when relationship became valid (for temporal queries)
         t_invalid: Optional datetime when relationship was invalidated (for temporal queries)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Relationship data including source_entity_id, target_entity_id,
@@ -266,7 +266,7 @@ async def get_entity_relationships(
         direction: Relationship direction - 'incoming', 'outgoing', or 'both' (default: 'both')
         relationship_types: Optional list of relationship types to filter by
         limit: Optional maximum number of relationships to return
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
         include_deleted: If True, include soft-deleted relationships (default: False)
 
     Returns:
@@ -496,7 +496,7 @@ async def soft_delete_relationship(
         source_entity_id: Source entity ID (required)
         target_entity_id: Target entity ID (required)
         relationship_type: Relationship type (required)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Deletion result with status, relationship info, and deleted_at timestamp
@@ -624,7 +624,7 @@ async def restore_relationship(
         source_entity_id: Source entity ID (required)
         target_entity_id: Target entity ID (required)
         relationship_type: Relationship type (required)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Restoration result with status and relationship info
@@ -731,7 +731,7 @@ async def hard_delete_relationship(
         source_entity_id: Source entity ID (required)
         target_entity_id: Target entity ID (required)
         relationship_type: Relationship type (required)
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Deletion result with status, relationship info, and hard_delete flag

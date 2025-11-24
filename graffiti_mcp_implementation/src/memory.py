@@ -198,7 +198,7 @@ async def add_memory(
         episode_body: Unstructured text content (required)
         source: Content type - "text", "json", or "message" (default: "text")
         source_description: Optional description of the source
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
         uuid: Optional UUID for deduplication
 
     Returns:
@@ -572,7 +572,7 @@ async def update_memory(
         source: Content type - "text", "json", or "message" (default: "text")
         source_description: Optional description of the source
         update_strategy: "incremental" or "replace" (default: "incremental")
-        group_id: Optional group ID for multi-tenancy (defaults to 'default')
+        group_id: Optional group ID for multi-tenancy (defaults to 'main')
 
     Returns:
         Dict[str, Any]: Result containing:

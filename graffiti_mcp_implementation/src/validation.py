@@ -169,7 +169,7 @@ def validate_group_id(group_id: Optional[str]) -> str:
         group_id: The group ID to validate
 
     Returns:
-        str: The validated and normalized group_id (defaults to 'default')
+        str: The validated and normalized group_id (defaults to 'main')
 
     Raises:
         ValueError: If group_id is reserved or invalid
@@ -178,13 +178,14 @@ def validate_group_id(group_id: Optional[str]) -> str:
         >>> validate_group_id('my_group')
         'my_group'
         >>> validate_group_id(None)
-        'default'
+        'main'
         >>> validate_group_id('  TEST_GROUP  ')
         'test_group'
     """
     # Reserved group IDs (case-insensitive)
+    # These are reserved to prevent conflicts with system-level operations
     RESERVED_GROUP_IDS = {
-        'default',
+        'default',  # Reserved - used internally when None/empty
         'global',
         'system',
         'admin',
@@ -193,8 +194,10 @@ def validate_group_id(group_id: Optional[str]) -> str:
         '_admin_',
     }
 
+    # Default to 'main' to match HTTP MCP server configuration
+    # 'default' is reserved and cannot be explicitly used by users
     if group_id is None:
-        return 'default'
+        return 'main'
 
     if not isinstance(group_id, str):
         raise TypeError(f'group_id must be a string, got {type(group_id)}')
@@ -210,7 +213,7 @@ def validate_group_id(group_id: Optional[str]) -> str:
         raise ValueError(f"Group ID '{group_id}' uses reserved prefix")
 
     if not normalized:
-        return 'default'
+        return 'main'
 
     return normalized
 
