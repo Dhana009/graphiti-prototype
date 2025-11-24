@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "graffiti-graph": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "/absolute/path/to/graphiti/graffiti_mcp_implementation/main.py"
+      ],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USER": "neo4j",
+        "NEO4J_PASSWORD": "testpassword",
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+      }
+    }
+  }
+}
+
+
